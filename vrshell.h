@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+int read_line(void);
+char *parse_str(char *str, int n);
 int executearg(char **arg);
-
 #endif /* VRSHELL_H */
