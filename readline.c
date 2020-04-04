@@ -4,7 +4,7 @@
  *
  * Return: number of characters read
  */
-int read_line(void)
+char *read_line(void)
 {
 	int chars_read;
 	char *buffer;
@@ -18,6 +18,10 @@ int read_line(void)
 	}
 
 	chars_read = getline(&buffer, &BUF_SIZE, stdin);
-
-	return (chars_read);
+	if (chars_read == -1)
+	{
+		perror("read_line failed");
+		exit(98);
+	}
+	return (buffer);
 }

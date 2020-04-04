@@ -2,16 +2,17 @@
 /**
  * parse_str - parse string based on space delimiter
  * @str: the string to parse
- * @n: number of chars in str
  *
  * Return: parsed string
  */
-char *parse_str(char *str, int n)
+char *parse_str(char *str)
 {
 	char *delim = " ";
 	char *token;
+	int len;
 
-	token = malloc(sizeof(char) * n);
+	len = _strlen(str);
+	token = malloc(sizeof(char) * (len + 1));
 	if (token == NULL)
 	{
 		perror("parse_str malloc failed");
@@ -23,4 +24,21 @@ char *parse_str(char *str, int n)
 		token = strtok(NULL, delim);
 
 	return (token);
+}
+
+/**
+ * _strlen - get length of string
+ * @str: string to process
+ *
+ * Return: length of str
+ */
+int _strlen(char *str)
+{
+	int count;
+
+	count = 0;
+	while (str[count] != '\0')
+		count++;
+
+	return (count);
 }
