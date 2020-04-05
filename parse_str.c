@@ -5,25 +5,37 @@
  *
  * Return: parsed string
  */
-char *parse_str(char *str)
+char **parse_str(char *str)
 {
-	char *delim = " ";
+	const char *delim = " \n";
 	char *token;
+	char **tok_arr;
 	int len;
 
+	if (str == NULL)
+		return (NULL);
+
 	len = _strlen(str);
-	token = malloc(sizeof(char) * (len + 1));
+	/* malloc one for the pointer, one for NULL*/
+	tok_arr = malloc(sizeof(char *) * 2);
+	if (tok_arr == NULL)
+	{
+		perror("malloc failed");
+		exit(99);
+	}
+
+	token = malloc(sizeof(char) * (len));
 	if (token == NULL)
 	{
-		perror("parse_str malloc failed");
-		exit(98);
+		perror("malloc failed");
+		exit(99);
 	}
 
 	token = strtok(str, delim);
-	while (token != NULL)
-		token = strtok(NULL, delim);
+	tok_arr[0] = token;
+	tok_arr[1] = NULL;
 
-	return (token);
+	return (tok_arr);
 }
 
 /**
