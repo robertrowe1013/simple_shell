@@ -5,9 +5,11 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
+#include <string.h>
 
 char *read_line(void);
-char *parse_str(char *str);
+char **parse_str(char *str);
 int executearg(char **arg);
 int _strlen(char *str);
 
