@@ -16,8 +16,10 @@ int executearg(char **arg)
 	if (c_pid == 0)
 	{
 		if (stat(arg[0], &stats) == -1)
-			perror("command not found");
+		{
+			perror("./vrsh");
 			exit(127);
+		}
 		execve(arg[0], arg, NULL);
 		perror("execve failed");
 		exit(98);
