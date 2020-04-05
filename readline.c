@@ -20,7 +20,7 @@ char *read_line(void)
 	chars_read = getline(&buffer, &BUF_SIZE, stdin);
 	if (chars_read == -1)
 	{
-		perror("read_line failed");
+		perror("logout");
 		exit(98);
 	}
 	return (buffer);
