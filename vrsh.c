@@ -15,10 +15,11 @@ int main(void)
 	while (status)
 	{
 		write(STDOUT_FILENO, prompt, 2);
-		arg = read_line(void);
+		arg = read_line();
 		tokens = parse_str(arg);
+		free(arg);
 		status = executearg(tokens);
+		free(tokens);
 	}
-
 	return (0);
 }
