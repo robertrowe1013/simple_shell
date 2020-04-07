@@ -11,9 +11,17 @@ char *_getenv(const char *name)
 	int i, len_name, len_env, len_new_name;
 
 	len_name = _strlen((char *)name);
+	/* Plus two accounts for = and \0 */
 	new_name = malloc(sizeof(char) * (len_name + 2));
+	if (new_name == NULL)
+	{
+		perror("Out of memory");
+		exit(ENOMEM);
+	}
+
 	_strncpy(new_name, (char *)name, 0, len_name);
 	_strcat(new_name, "=");
+
 	len_new_name = _strlen(new_name);
 	for (i = 0; environ[i] != NULL; i++)
 	{
@@ -21,9 +29,19 @@ char *_getenv(const char *name)
 			break;
 	}
 
+	free(new_name);
+	/* Returns NULL if name not found */
+	if (environ[i] == NULL)
+		return (NULL);
+
 	len_env = _strlen(environ[i]);
 	env = malloc(sizeof(char) * (len_env - len_name));
-	_strncpy(env, environ[i], len_new_name, len_env);
+	if (env == NULL)
+	{
+		perror("Out of memory");
+		exit(ENOMEM);
+	}
 
+	_strncpy(env, environ[i], len_new_name, len_env);
 	return (env);
 }
