@@ -13,16 +13,16 @@ char *read_line(void)
 	buffer = malloc(sizeof(char) * BUF_SIZE);
 	if (buffer == NULL)
 	{
-		perror("read_line malloc failed");
-		exit(98);
+		perror("Out of memory");
+		exit(ENOMEM);
 	}
 
 	chars_read = getline(&buffer, &BUF_SIZE, stdin);
 	if (chars_read == -1)
 	{
 		free(buffer);
-		perror("logout");
-		exit(98);
+		write(STDOUT_FILENO, "logout\n", 8);
+		exit(0);
 	}
 	return (buffer);
 }
