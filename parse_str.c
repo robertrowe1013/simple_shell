@@ -26,8 +26,9 @@ char **parse_str(char *str)
 	tok_arr = malloc(sizeof(char *) * (words + 1));
 	if (tok_arr == NULL)
 	{
-		perror("malloc failed");
-		exit(99);
+		free(str);
+		perror("Out of memory");
+		exit(0);
 	}
 
 	token = strtok(str, delim);
