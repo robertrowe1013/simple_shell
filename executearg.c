@@ -10,8 +10,11 @@ int executearg(char **arg)
 {
 	pid_t c_pid, pid;
 	int status;
+	char **path_array;
 	struct stat stats;
 
+	path_array = _paths();
+	arg[0] = _finder(path_array, arg[0]);
 	c_pid = fork();
 	if (c_pid == 0)
 	{

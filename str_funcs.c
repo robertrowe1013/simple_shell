@@ -10,11 +10,11 @@ char *_strcat(char *dest, char *src)
 	int counter, dest_index;
 
 	dest_index = 0;
-	while (dest[dest_index] != 0)
+	while (dest[dest_index] != '\0')
 		dest_index++;
 
 	counter = 0;
-	while (src[counter] != 0)
+	while (src[counter] != '\0')
 	{
 		dest[dest_index] = src[counter];
 		dest_index++;

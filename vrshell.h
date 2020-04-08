@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <errno.h>
 
 char *read_line(void);
 char **parse_str(char *str);
@@ -18,5 +19,7 @@ char *_strcat(char *dest, char *src);
 char *_getenv(const char *name);
 char **_paths(void);
 extern char **environ;
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char *_finder(char **paths, char *cmd);
 
 #endif /* VRSHELL_H */
