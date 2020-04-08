@@ -1,3 +1,5 @@
+#include "vrshell.h"
+
 /**
  * _strcat - concatenates two strings
  * @dest: string appended to
@@ -90,4 +92,24 @@ char *_strncpy(char *dest, char *src, int from, int n)
 	}
 	dest[count] = '\0';
 	return (dest);
+}
+
+/**
+ * _strdup - mallocs and copies a new string
+ * @s: string to duplicate
+ * @n: number of bytes to duplicate
+ *
+ * Return: duplicated string, NULL if malloc fails
+ */
+
+char *_strdup(char *s)
+{
+        int len;
+        char *dupe;
+
+        len = _strlen(s);
+        dupe = malloc(sizeof(char) * (len + 1));
+        _strncpy(dupe, s, 0, len);
+
+        return (dupe);
 }

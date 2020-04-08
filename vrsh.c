@@ -16,7 +16,7 @@ int main(void)
 	{
 		write(STDOUT_FILENO, prompt, 2);
 		arg = read_line();
-		tokens = parse_str(arg);
+		tokens = parse_str(arg, " \n");
 		status = executearg(tokens);
 		free(tokens);
 		free(arg);
