@@ -24,5 +24,6 @@ char *read_line(void)
 		write(STDOUT_FILENO, "logout\n", 8);
 		exit(0);
 	}
+	buffer[chars_read + 1] = '\0';
 	return (buffer);
 }
