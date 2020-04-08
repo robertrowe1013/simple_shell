@@ -5,9 +5,8 @@
  *
  * Return: parsed string
  */
-char **parse_str(char *str)
+char **parse_str(char *str, char *delim)
 {
-	const char *delim = " \n";
 	char *token;
 	char **tok_arr;
 	int words, i, j;
@@ -28,17 +27,17 @@ char **parse_str(char *str)
 	{
 		free(str);
 		perror("Out of memory");
-		exit(0);
+		exit(ENOMEM);
 	}
 
 	token = strtok(str, delim);
 	j = 0;
 	while (token != NULL)
 	{
-		tok_arr[j] = token;
+		tok_arr[j] = _strdup(token);
 		token = strtok(NULL, delim);
 		j++;
 	}
-
+	tok_arr[j] = NULL;
 	return (tok_arr);
 }

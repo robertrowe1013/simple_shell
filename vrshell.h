@@ -10,7 +10,7 @@
 #include <errno.h>
 
 char *read_line(void);
-char **parse_str(char *str);
+char **parse_str(char *str, char *delim);
 int executearg(char **arg);
 int _strlen(char *str);
 int _strncmp(char *s1, char *s2, int n);
@@ -21,5 +21,7 @@ char **_paths(void);
 extern char **environ;
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_finder(char **paths, char *cmd);
+void free_dptr(char **ptr);
+char *_strdup(char *s);
 
 #endif /* VRSHELL_H */
