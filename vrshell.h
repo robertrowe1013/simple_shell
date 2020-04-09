@@ -23,5 +23,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_finder(char **paths, char *cmd);
 void free_dptr(char **ptr);
 char *_strdup(char *s);
+int _putchar(char c);
 
 #endif /* VRSHELL_H */

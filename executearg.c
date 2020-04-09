@@ -1,3 +1,4 @@
+
 #include "vrshell.h"
 /**
   * executearg - execute argument
@@ -12,7 +13,7 @@ int executearg(char **arg)
 	int status;
 	char **path_array;
 	struct stat stats;
-
+	int i = 0;
 	path_array = _paths();
 	arg[0] = _finder(path_array, arg[0]);
 	c_pid = fork();
