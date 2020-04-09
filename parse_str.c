@@ -2,6 +2,7 @@
 /**
  * parse_str - parse string based on space delimiter
  * @str: the string to parse
+ * @delim: delimter used to parse string
  *
  * Return: parsed string
  */

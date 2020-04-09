@@ -1,0 +1,86 @@
+.\" manpage for vrshell
+.\" Contact robert.rowe@holbertonschool.com or
+.\" viet.tran@holbertonschool.com to correct typos or errors
+.TH VRSHELL 1 "09 April 2020" "version 1.0" "vrshell manpage"
+.SH NAME
+vrshell - a simple linux shell
+.SH SYNOPSIS
+.B ./vrsh
+.SH DESCRIPTION
+.B vrshell
+is a command language interpreter that executes commands from the standard
+input.
+.SH ARGUMENTS
+The first argument from input is the command to be executed followed by
+any parameters taken in the by the command.
+.B Vrshell
+executes the command then exits. The exit status is the exit status of the last
+command executed. If no commands are executed, the exit status is 0.
+.SH COMMAND EXECUTION
+After a command has been split into words, if it results in a simple
+command and an optional list of arguments, the following actions are
+taken.
+.PP
+If the command name contains no slashes, the shell attempts to locate it.
+.B Vrshell
+searches each element of the PATH for a directory containing an executable
+file by that name. If the search is unsuccessful, the shell prints an error
+message and returns an exit status of 127.
+.PP
+If the search is successful, the shell executes the named program in a separate
+execution environment.  Argument 0 is set to the name given, and the remaining
+arguments to the command are set to the arguments given, if any.
+.SH ENVIRONMENT
+When a program is invoked it is given an array of strings called the
+environment. This is a list of name-value pairs, of the form name=value.
+.SH EXIT STATUS
+For the shell's purposes, a command which exits with a zero exit status
+has succeeded. An exit status of zero indicates success. A non-zero:
+exit status indicates failure. When a command terminates on a fatal
+signal N, vrshell uses the value of 128+N as the exit status.
+.PP
+If a command is not found, the child process created to execute it
+returns a status of 127. If a command is found but is not executable,
+the return status is 126.
+.B Vrshell
+itself returns the exit status of the last command executed, unless a syntax
+error occurs, in which case it exits with a non-zero value.
+.SH VRSHELL BUILTIN COMMANDS
+.B exit
+[n]
+.PP
+Cause the shell to exit with a status of n. If n is omitted, the exit status is
+that of the last command executed.
+.SH EXAMPLE INTERACTIVE MODE
+.PP
+.PP
+$ ./vrsh
+.PP
+($) /bin/ls
+.PP
+vrsh vrsh.c shell.c
+.PP
+($)
+.PP
+($) exit
+.PP
+$
+.PP
+.PP
+.SH EXAMPLE NON-INTERACTIVE MODE
+.PP
+.PP
+$ echo "/bin/ls" | ./vrsh
+.PP
+.PP
+vrsh vrsh.c shell.c
+.SH SEE ALSO
+Bash Reference Manual, Brian Fox and Chet Ramey
+.SH AUTHORS
+Robert Rowe
+robert.rowe@holbertonschool.com
+.PP
+Viet Tran
+viet.tran@holbertonschool.com
+.SH BUGS
+There are most likely bugs we missed. Contact the authors if any are found.
