@@ -97,19 +97,18 @@ char *_strncpy(char *dest, char *src, int from, int n)
 /**
  * _strdup - mallocs and copies a new string
  * @s: string to duplicate
- * @n: number of bytes to duplicate
  *
  * Return: duplicated string, NULL if malloc fails
  */
 
 char *_strdup(char *s)
 {
-        int len;
-        char *dupe;
+	int len;
+	char *dupe;
 
-        len = _strlen(s);
-        dupe = malloc(sizeof(char) * (len + 1));
-        _strncpy(dupe, s, 0, len);
+	len = _strlen(s);
+	dupe = malloc(sizeof(char) * (len + 1));
+	_strncpy(dupe, s, 0, len);
 
-        return (dupe);
+	return (dupe);
 }
