@@ -10,19 +10,20 @@
 #include <errno.h>
 
 char *read_line(void);
-char **parse_str(char *str, char *delim);
+int count_words(char *str, char *delim);
+char **parse_str(char *str, char *delim, int n);
 int executearg(char **arg);
+char *_strcat(char *dest, char *src);
 int _strlen(char *str);
 int _strncmp(char *s1, char *s2, int n);
 char *_strncpy(char *dest, char *src, int from, int n);
-char *_strcat(char *dest, char *src);
+char *_strdup(char *s);
 char *_getenv(const char *name);
 char **_paths(void);
+char *_finder(char **paths, char *cmd);
 extern char **environ;
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char *_finder(char **paths, char *cmd);
 void free_dptr(char **ptr);
-char *_strdup(char *s);
 int _putchar(char c);
 
 #endif /* VRSHELL_H */

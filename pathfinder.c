@@ -42,7 +42,7 @@ char *_getenv(const char *name)
 		exit(ENOMEM);
 	}
 
-	_strncpy(env, environ[i], len_new_name , len_env - len_name);
+	_strncpy(env, environ[i], len_new_name, (len_env - len_name));
 	return (env);
 }
 
@@ -56,9 +56,11 @@ char **_paths(void)
 
 	char *allpaths;
 	char **path_array;
+	int wc = 0;
 
 	allpaths = _getenv("PATH");
-	path_array = parse_str(allpaths, ":");
+	wc = count_words(allpaths, ":");
+	path_array = parse_str(allpaths, ":", wc);
 	return (path_array);
 }
 /**
