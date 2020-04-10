@@ -2,43 +2,51 @@
 /**
  * parse_str - parse string based on space delimiter
  * @str: the string to parse
- * @delim: delimter used to parse string
+ * @delim: delimiter used to parse string
  *
  * Return: parsed string
  */
 char **parse_str(char *str, char *delim)
 {
-	char *token;
+	char *token, *clone;
 	char **tok_arr;
-	int words, i, j;
+	int words = 0, i, j, d;
 
 	if (str == NULL)
 		return (NULL);
 
-	i = words = 0;
-	while (str[i] != '\0')
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (str[i] == ' ' || str[i] == '\n')
-			words++;
-		i++;
+		for (d = 0; delim[d] != '\0'; d++)
+		{
+			if (str[i] == delim[d])
+				words++;
+		}
 	}
-	/* malloc plus one for NULL pointer */
-	tok_arr = malloc(sizeof(char *) * (words + 1));
+	/* malloc plus two, one for last word one for NULL pointer */
+	tok_arr = malloc(sizeof(char *) * (words + 2));
 	if (tok_arr == NULL)
 	{
 		free(str);
 		perror("Out of memory");
 		exit(ENOMEM);
 	}
-
-	token = strtok(str, delim);
-	j = 0;
-	while (token != NULL)
+	clone = _strdup(str);
+	token = strtok(clone, delim);
+	free(str);
+	for (j = 0; token != NULL; j++)
 	{
 		tok_arr[j] = _strdup(token);
+		if (tok_arr[j] == NULL)
+		{
+			free_dptr(tok_arr);
+			free(clone);
+			perror("Out of memory");
+			exit(ENOMEM);
+		}
 		token = strtok(NULL, delim);
-		j++;
 	}
 	tok_arr[j] = NULL;
+	free(clone);
 	return (tok_arr);
 }

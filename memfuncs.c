@@ -33,7 +33,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	np = malloc(sizeof(char) * new_size);
 	if (np == NULL)
 	{
-		free(np);
+		free(ptr);
 		return (NULL);
 	}
 	if (new_size > old_size)
@@ -43,7 +43,24 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	p = ptr;
 	for (i = 0; i < n; i++)
 		np[i] = p[i];
+	np[i] = '\0';
 	free(ptr);
 	p = np;
 	return (p);
+}
+
+/**
+ * free_dptr - frees all elements then the double pointer
+ * @ptr: double pointer to free
+ *
+ * Return: void
+ */
+void free_dptr(char **ptr)
+{
+	int i;
+
+	for (i = 0; ptr[i] != NULL; i++)
+		free(ptr[i]);
+
+	free(ptr);
 }

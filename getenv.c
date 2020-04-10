@@ -35,13 +35,13 @@ char *_getenv(const char *name)
 		return (NULL);
 
 	len_env = _strlen(environ[i]);
-	env = malloc(sizeof(char) * (len_env - len_name));
+	env = malloc(sizeof(char) * (len_env - len_name + 1));
 	if (env == NULL)
 	{
 		perror("Out of memory");
 		exit(ENOMEM);
 	}
 
-	_strncpy(env, environ[i], len_new_name, len_env);
+	_strncpy(env, environ[i], len_new_name , len_env - len_name);
 	return (env);
 }
