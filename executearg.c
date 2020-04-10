@@ -12,7 +12,7 @@ int executearg(char **arg)
 	pid_t c_pid, pid;
 	int status, fd;
 	char **path_array;
-
+asdf
 	path_array = _paths();
 	arg[0] = _finder(path_array, arg[0]);
 	fd = access(arg[0], X_OK);
