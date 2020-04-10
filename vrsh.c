@@ -25,8 +25,6 @@ int main(void)
 			status = runbi(tokens);
 		else
 			status = executearg(tokens);
-		free(tokens);
-		/*free(arg);*/
 	}
 	return (0);
 }

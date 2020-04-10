@@ -15,16 +15,19 @@ int executearg(char **arg)
 
 	path_array = _paths();
 	arg[0] = _finder(path_array, arg[0]);
+	free_dptr(path_array);
 	fd = access(arg[0], X_OK);
 	c_pid = fork();
 	if (c_pid == 0)
 	{
 		if (fd == -1)
 		{
+			free_dptr(arg);
 			perror("./vrsh");
 			exit(127);
 		}
 		execve(arg[0], arg, NULL);
+		free_dptr(arg);
 		perror("execve failed");
 		exit(98);
 	}
@@ -33,14 +36,17 @@ int executearg(char **arg)
 		pid = wait(&status);
 		if (pid < 0)
 		{
+			free_dptr(arg);
 			perror("wait");
 			exit(98);
 		}
 	}
 	else
 	{
+		free_dptr(arg);
 		perror("fork failed");
 		exit(98);
 	}
+	free_dptr(arg);
 	return (1);
 }
