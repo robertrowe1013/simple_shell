@@ -12,7 +12,7 @@ int main(void)
 	char *arg;
 	char **tokens;
 	int i = 0;
-	int j = 0;
+	int j = 0, wc = 0;
 
 	while (status)
 	{
@@ -32,12 +32,13 @@ int main(void)
 				j = 0;
 			}
 		}
-		else 
+		else
 		{
-			tokens = parse_str(arg, " \n");
+			wc = count_words(arg, " \n");
+			tokens = parse_str(arg, " \n", wc);
 			status = executearg(tokens);
 			free(tokens);
-			free(arg);
+			/*free(arg);*/
 		}
 	}
 	return (0);
