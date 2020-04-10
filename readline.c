@@ -7,17 +7,10 @@
 char *read_line(void)
 {
 	int chars_read;
-	char *buffer;
-	size_t BUF_SIZE = 1024;
+	char *buffer = NULL;
+	size_t buf_size = 0;
 
-	buffer = malloc(sizeof(char) * BUF_SIZE);
-	if (buffer == NULL)
-	{
-		perror("Out of memory");
-		exit(ENOMEM);
-	}
-
-	chars_read = getline(&buffer, &BUF_SIZE, stdin);
+	chars_read = getline(&buffer, &buf_size, stdin);
 	if (chars_read == -1)
 	{
 		free(buffer);
