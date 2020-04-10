@@ -90,6 +90,7 @@ char *_finder(char **paths, char *cmd)
 		{
 			break;
 		}
+		free(testpath);
 		i++;
 	}
 	free(cmd);
