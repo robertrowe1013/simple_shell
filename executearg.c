@@ -10,13 +10,13 @@
 int executearg(char **arg)
 {
 	pid_t c_pid, pid;
-	int status;
+	int status, fd;
 	char **path_array;
-	struct stat stats;
 
 	path_array = _paths();
 	arg[0] = _finder(path_array, arg[0]);
-	if (stat(arg[0], &stats) == -1)
+	fd = access(arg[0], X_OK);
+	if (fd == -1)
 	{
 		perror("./vrsh");
 		exit(127);
