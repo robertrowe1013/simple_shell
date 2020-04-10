@@ -13,17 +13,17 @@ int executearg(char **arg)
 	int status;
 	char **path_array;
 	struct stat stats;
-	int i = 0;
+
 	path_array = _paths();
 	arg[0] = _finder(path_array, arg[0]);
+	if (stat(arg[0], &stats) == -1)
+	{
+		perror("./vrsh");
+		exit(127);
+	}
 	c_pid = fork();
 	if (c_pid == 0)
 	{
-		if (stat(arg[0], &stats) == -1)
-		{
-			perror("./vrsh");
-			exit(127);
-		}
 		execve(arg[0], arg, NULL);
 		perror("execve failed");
 		exit(98);
