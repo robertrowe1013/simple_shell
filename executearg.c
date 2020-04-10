@@ -16,14 +16,14 @@ int executearg(char **arg)
 	path_array = _paths();
 	arg[0] = _finder(path_array, arg[0]);
 	fd = access(arg[0], X_OK);
-	if (fd == -1)
-	{
-		perror("./vrsh");
-		exit(127);
-	}
 	c_pid = fork();
 	if (c_pid == 0)
 	{
+		if (fd == -1)
+		{
+			perror("./vrsh");
+			exit(127);
+		}
 		execve(arg[0], arg, NULL);
 		perror("execve failed");
 		exit(98);

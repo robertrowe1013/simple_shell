@@ -25,5 +25,7 @@ extern char **environ;
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void free_dptr(char **ptr);
 int _putchar(char c);
+int checkbi(char **tokens);
+int runbi(char **tokens);
 
 #endif /* VRSHELL_H */

@@ -18,11 +18,5 @@ char *read_line(void)
 		exit(0);
 	}
 	buffer[chars_read - 1] = '\0';
-	if (_strncmp(buffer, "exit", 4) == 0)
-	{
-		free(buffer);
-		write(STDOUT_FILENO, "logout\n", 8);
-		exit(0);
-	}
 	return (buffer);
 }
