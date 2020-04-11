@@ -13,9 +13,12 @@ int executearg(char **arg)
 	int status, fd;
 	char **path_array;
 
-	path_array = _paths();
-	arg[0] = _finder(path_array, arg[0]);
-	free_dptr(path_array);
+	if (arg[0][0] != '/')
+	{
+		path_array = _paths();
+		arg[0] = _finder(path_array, arg[0]);
+		free_dptr(path_array);
+	}
 	fd = access(arg[0], X_OK);
 	c_pid = fork();
 	if (c_pid == 0)
