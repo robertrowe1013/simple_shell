@@ -7,6 +7,8 @@
   */
 int checkbi(char **tokens)
 {
+	if (tokens[0] == NULL)
+		return (0);
 	if (_strncmp(tokens[0], "env", 3) == 0)
 		return (0);
 	if (_strncmp(tokens[0], "exit", 4) == 0)
@@ -24,6 +26,8 @@ int runbi(char **tokens)
 	int i = 0;
 	int i2 = 0;
 
+	if (tokens[0] == NULL)
+		return (1);
 	if (_strncmp(tokens[0], "env", 3) == 0)
 	{
 		while (environ[i] != NULL)
@@ -40,7 +44,7 @@ int runbi(char **tokens)
 	}
 	else if (_strncmp(tokens[0], "exit", 4) == 0)
 	{
-		/* FREE TOKENS HERE */
+		free_dptr(tokens);
 		write(STDOUT_FILENO, "logout\n", 8);
 		exit(0);
 	}
