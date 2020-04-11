@@ -44,7 +44,7 @@ int runbi(char **tokens)
 	}
 	else if (_strncmp(tokens[0], "exit", 4) == 0)
 	{
-		/* FREE TOKENS HERE */
+		free_dptr(tokens);
 		write(STDOUT_FILENO, "logout\n", 8);
 		exit(0);
 	}
