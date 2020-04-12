@@ -21,8 +21,10 @@ int count_words(char *str, char *delim)
 				words++;
 		}
 	}
-	/* add 1 to words to count last word */
-	words += 1;
+	if (i == 0)
+		words = 0;
+	else
+		words += 1;
 	return (words);
 }
 
