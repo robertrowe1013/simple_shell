@@ -45,6 +45,24 @@ char *_getenv(const char *name)
 	_strncpy(env, environ[i], len_new_name, (len_env - len_name));
 	return (env);
 }
+/**
+  * pathfinder - finds which path to use
+  * @arg: arg array
+  *
+  * Return: arg array
+  */
+char **pathfinder(char **arg)
+{
+	char **path_array;
+
+	if (arg[0][0] != '/')
+	{
+		path_array = _paths();
+		arg[0] = _finder(path_array, arg[0]);
+		free_dptr(path_array);
+	}
+	return (arg);
+}
 
 /**
   * _paths - turns path env to string array
@@ -75,7 +93,6 @@ char *_finder(char **paths, char *cmd)
 	int i = 0;
 	int path_len, cmd_len;
 	char *testpath;
-	struct stat stats;
 
 	while (paths[i] != NULL)
 	{
@@ -86,7 +103,7 @@ char *_finder(char **paths, char *cmd)
 		testpath = _realloc(testpath, path_len, (path_len + cmd_len + 2));
 		_strcat(testpath, "/");
 		_strcat(testpath, cmd);
-		if (stat(testpath, &stats) == 0)
+		if (access(testpath, X_OK) == 0)
 		{
 			break;
 		}

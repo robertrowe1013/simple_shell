@@ -27,5 +27,6 @@ void free_dptr(char **ptr);
 int _putchar(char c);
 int checkbi(char **tokens);
 int runbi(char **tokens);
+char **pathfinder(char **arg);
 
 #endif /* VRSHELL_H */
