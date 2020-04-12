@@ -60,11 +60,8 @@ char **pathfinder(char **arg)
 		path_array = _paths();
 		if (path_array[0] == NULL)
 			return (arg);
-		else
-		{
-			arg[0] = _finder(path_array, arg[0]);
-			free_dptr(path_array);
-		}
+		arg[0] = _finder(path_array, arg[0]);
+		free_dptr(path_array);
 	}
 	return (arg);
 }
@@ -84,7 +81,10 @@ char **_paths(void)
 	allpaths = _getenv("PATH");
 	wc = count_words(allpaths, ":");
 	if (wc == 0)
-		path_array = NULL;
+	{
+		path_array = malloc(sizeof(char *));
+		path_array[0] = NULL;
+	}
 	else
 		path_array = parse_str(allpaths, ":", wc);
 	return (path_array);
