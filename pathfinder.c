@@ -84,10 +84,7 @@ char **_paths(void)
 	allpaths = _getenv("PATH");
 	wc = count_words(allpaths, ":");
 	if (wc == 0)
-	{
-		path_array = malloc(sizeof(char*));
-		path_array[0] = NULL;
-	}
+		path_array = NULL;
 	else
 		path_array = parse_str(allpaths, ":", wc);
 	return (path_array);
@@ -105,7 +102,7 @@ char *_finder(char **paths, char *cmd)
 	int path_len, cmd_len;
 	char *testpath;
 
-	if (paths[i] == NULL)
+	if (paths == NULL || paths[i] == NULL)
 		return (cmd);
 	while (paths[i] != NULL)
 	{
