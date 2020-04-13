@@ -18,8 +18,13 @@ int main(void)
 	{
 		write(STDOUT_FILENO, prompt, 2);
 		arg = read_line();
-		wc = count_words(arg, " \n");
-		tokens = parse_str(arg, " \n", wc);
+		if (arg[0] == '\0')
+		{
+			free(arg);
+			continue;
+		}
+		wc = count_words(arg, " ");
+		tokens = parse_str(arg, " ", wc);
 		bi = checkbi(tokens);
 		if (bi == 0)
 			status = runbi(tokens);
