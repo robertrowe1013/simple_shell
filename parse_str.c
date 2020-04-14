@@ -8,24 +8,35 @@
  */
 int count_words(char *str, char *delim)
 {
-	int words = 0, i, j;
+	int wc = 0, i, j;
+	int isword, isdelim;
 
 	if (str == NULL)
 		return (0);
 
+	isword = isdelim = 0;
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		for (j = 0; delim[j] != '\0'; j++)
 		{
 			if (str[i] == delim[j])
-				words++;
+			{
+				if (isword)
+					isdelim = 1;
+				break;
+			}
+
+			if (delim[j + 1] == '\0' && (!isword && !isdelim))
+				isword = 1;
 		}
+		if (isword && isdelim)
+			wc++;
 	}
 	if (i == 0)
-		words = 0;
+		wc = 0;
 	else
-		words += 1;
-	return (words);
+		wc += 1;
+	return (wc);
 }
 
 /**
