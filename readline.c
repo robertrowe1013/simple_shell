@@ -14,6 +14,7 @@ char *read_line(void)
 	if (chars_read == -1)
 	{
 		free(buffer);
+		_putchar('\n');
 		exit(0);
 	}
 	buffer[chars_read - 1] = '\0';
