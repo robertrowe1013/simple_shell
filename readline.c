@@ -4,7 +4,7 @@
  *
  * Return: number of characters read
  */
-char *read_line(void)
+char *read_line(int status)
 {
 	int chars_read;
 	char *buffer = NULL;
@@ -16,7 +16,7 @@ char *read_line(void)
 		if (isatty(0))
 			putchar('\n');
 		free(buffer);
-		exit(0);
+		exit(status);
 	}
 	buffer[chars_read - 1] = '\0';
 	return (buffer);

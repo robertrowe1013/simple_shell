@@ -13,6 +13,11 @@ int executearg(char **arg)
 	int status;
 
 	arg = pathfinder(arg);
+	if (arg[0] == NULL)
+	{
+		free_dptr(arg);
+		return (127);
+	}
 	c_pid = fork();
 	if (c_pid == 0)
 	{
