@@ -16,7 +16,10 @@ int main(void)
 
 	while (status)
 	{
-		write(STDOUT_FILENO, prompt, 2);
+		if (isatty(0))
+			write(STDOUT_FILENO, prompt, 2);
+		else
+			status = 0;
 		arg = read_line();
 		if (arg[0] == '\0')
 		{
