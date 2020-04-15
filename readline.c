@@ -13,8 +13,9 @@ char *read_line(void)
 	chars_read = getline(&buffer, &buf_size, stdin);
 	if (chars_read == -1)
 	{
+		if (isatty(0))
+			putchar('\n');
 		free(buffer);
-		_putchar('\n');
 		exit(0);
 	}
 	buffer[chars_read - 1] = '\0';
