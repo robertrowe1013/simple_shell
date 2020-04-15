@@ -10,19 +10,12 @@
 int executearg(char **arg)
 {
 	pid_t c_pid, pid;
-	int status, fd;
+	int status;
 
 	arg = pathfinder(arg);
-	fd = access(arg[0], X_OK);
 	c_pid = fork();
 	if (c_pid == 0)
 	{
-		if (fd == -1)
-		{
-			free_dptr(arg);
-			perror("./vrsh");
-			exit(127);
-		}
 		execve(arg[0], arg, NULL);
 		free_dptr(arg);
 		perror("execve failed");
@@ -30,7 +23,7 @@ int executearg(char **arg)
 	}
 	else if (c_pid > 0)
 	{
-		pid = wait(&status);
+		pid = waitpid(c_pid, &status, WUNTRACED);
 		if (pid < 0)
 		{
 			free_dptr(arg);

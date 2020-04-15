@@ -9,6 +9,8 @@ int checkbi(char **tokens)
 {
 	if (_strncmp(tokens[0], "exit", 4) == 0)
 		return (0);
+	if (_strncmp(tokens[0], "env", 3) == 0)
+		return (0);
 	return (-1);
 }
 /**
@@ -39,8 +41,7 @@ int runbi(char **tokens)
 	else if (_strncmp(tokens[0], "exit", 4) == 0)
 	{
 		free_dptr(tokens);
-		write(STDOUT_FILENO, "logout\n", 8);
-		exit(0);
+		return (0);
 	}
 	return (1);
 }

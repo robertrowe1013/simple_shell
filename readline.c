@@ -14,7 +14,6 @@ char *read_line(void)
 	if (chars_read == -1)
 	{
 		free(buffer);
-		write(STDOUT_FILENO, "logout\n", 8);
 		exit(0);
 	}
 	buffer[chars_read - 1] = '\0';
