@@ -51,19 +51,20 @@ char *_getenv(const char *name)
   *
   * Return: arg array
   */
-char **pathfinder(char **arg)
+char *pathfinder(char **arg)
 {
 	char **path_array;
+	char *pathcmd;
 
 	if (arg[0][0] != '/')
 	{
 		path_array = _paths();
 		if (path_array == NULL)
-			return (arg);
-		arg[0] = _finder(path_array, arg[0]);
+			return (arg[0]);
+		pathcmd = _finder(path_array, arg[0]);
 		free_dptr(path_array);
 	}
-	return (arg);
+	return (pathcmd);
 }
 
 /**
@@ -74,11 +75,21 @@ char **pathfinder(char **arg)
 char **_paths(void)
 {
 
-	char *allpaths;
+	char *allpaths, *newpath;
 	char **path_array;
-	int wc = 0;
+	int wc = 0, len;
 
 	allpaths = _getenv("PATH");
+	/* new code */
+	if (allpaths[0] == ':')
+	{
+		len = _strlen(allpaths);
+		newpath = malloc(sizeof(char) * (len + 2));
+		newpath = "";
+		_strcat(newpath, allpaths);
+		free(allpaths);
+		allpaths = newpath;
+	}
 	wc = count_words(allpaths, ":");
 	if (wc == 0)
 		return (NULL);
@@ -105,7 +116,8 @@ char *_finder(char **paths, char *cmd)
 		path_len = _strlen(paths[i]);
 		testpath = malloc(sizeof(char) * (path_len + 1));
 		_strncpy(testpath, paths[i], 0, path_len);
-		cmd_len = _strlen(cmd);
+	/*	testpath = _strdup(paths[i]);
+	*/	cmd_len = _strlen(cmd);
 		testpath = _realloc(testpath, path_len, (path_len + cmd_len + 2));
 		_strcat(testpath, "/");
 		_strcat(testpath, cmd);
