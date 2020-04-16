@@ -72,18 +72,19 @@ void print_number(int n)
 
 /**
  * badcom - prints message to stderr
- * @shell: executable shell name
+ * @errstatus: error status number
  * @count: number of times the shell has run
  * @cmd: command typed in
- *
- * Return: 127
  */
-void badcom(char *shell, int count, char *cmd)
+void badcom(int errstatus, int count, char *cmd)
 {
 	int len_colsp;
 	char colsp[] = ": ";
 	char nf[] = "not found\n";
+	char pd[] = "Permission denied\n";
+	char *shell;
 
+	shell = _getenv("_");
 	write(STDERR_FILENO, shell, _strlen(shell));
 	len_colsp = _strlen(colsp);
 	write(STDERR_FILENO, colsp, len_colsp);
@@ -93,6 +94,9 @@ void badcom(char *shell, int count, char *cmd)
 
 	write(STDERR_FILENO, cmd, _strlen(cmd));
 	write(STDERR_FILENO, colsp, len_colsp);
-
-	write(STDERR_FILENO, nf, _strlen(nf));
+	if (errstatus == 127)
+		write(STDERR_FILENO, nf, _strlen(nf));
+	if (errstatus == 126)
+		write(STDERR_FILENO, pd, _strlen(pd));
+	free(shell);
 }
