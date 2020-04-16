@@ -26,6 +26,8 @@ int runbi(char **tokens)
 
 	if (_strncmp(tokens[0], "env", 3) == 0)
 	{
+		if (environ == NULL)
+			return (1);
 		while (environ[i] != NULL)
 		{
 			while (environ[i][i2] != '\0')

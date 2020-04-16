@@ -110,7 +110,7 @@ char *_finder(char **paths, char *cmd)
 		testpath = _realloc(testpath, path_len, (path_len + cmd_len + 2));
 		_strcat(testpath, "/");
 		_strcat(testpath, cmd);
-		if (access(testpath, X_OK) == 0)
+		if (access(testpath, F_OK) == 0)
 			break;
 		free(testpath);
 		testpath = NULL;

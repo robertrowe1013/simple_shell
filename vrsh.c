@@ -11,13 +11,14 @@ int main(void)
 	char *arg;
 	char **tokens;
 	int wc = 0, counter = 0;
-	int bi;
+	int bi, errstatus = 0;
 	char *shell, *cmd;
 
 	while (status)
 	{
-		write(STDOUT_FILENO, prompt, 2);
-		arg = read_line(status);
+		if (isatty(0))
+			write(STDOUT_FILENO, prompt, 2);
+		arg = read_line(errstatus);
 		if (arg[0] == '\0')
 		{
 			free(arg);
@@ -29,11 +30,15 @@ int main(void)
 		cmd = _strdup(tokens[0]);
 		bi = checkbi(tokens);
 		if (bi == 0)
+		{
 			status = runbi(tokens);
+			if (status == 1)
+				errstatus = 0;
+		}
 		else
-			status = executearg(tokens);
+			errstatus = executearg(tokens);
 		counter++;
-		if (status == 127)
+		if (errstatus == 127)
 		{
 			shell = _getenv("_");
 			badcom(shell, counter, cmd);
@@ -41,5 +46,5 @@ int main(void)
 			free(cmd);
 		}
 	}
-	return (0);
+	return (errstatus);
 }
