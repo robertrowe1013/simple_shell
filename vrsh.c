@@ -43,8 +43,8 @@ int main(void)
 			shell = _getenv("_");
 			badcom(shell, counter, cmd);
 			free(shell);
-			free(cmd);
 		}
+		free(cmd);
 	}
 	return (errstatus);
 }
