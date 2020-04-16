@@ -10,13 +10,19 @@
 int executearg(char **arg)
 {
 	pid_t c_pid, pid;
-	int status;
+	int status, ac;
 
 	arg = pathfinder(arg);
 	if (arg[0] == NULL)
 	{
 		free_dptr(arg);
 		return (127);
+	}
+	ac = access(arg[0], X_OK);
+	if (ac != 0)
+	{
+		free_dptr(arg);
+		return (126);
 	}
 	c_pid = fork();
 	if (c_pid == 0)
@@ -43,5 +49,5 @@ int executearg(char **arg)
 		exit(98);
 	}
 	free_dptr(arg);
-	return (1);
+	return (0);
 }
