@@ -8,11 +8,9 @@ int main(void)
 {
 	int status = 1;
 	char *prompt = "$ ";
-	char *arg;
+	char *arg, *cmd;
 	char **tokens;
-	int wc = 0, counter = 0;
-	int bi, errstatus = 0;
-	char *shell, *cmd;
+	int bi, wc = 0, counter = 0, errstatus = 0;
 
 	while (status)
 	{
@@ -36,13 +34,14 @@ int main(void)
 				errstatus = 0;
 		}
 		else
-			errstatus = executearg(tokens);
-		counter++;
-		if (errstatus == 127)
 		{
-			shell = _getenv("_");
-			badcom(shell, counter, cmd);
-			free(shell);
+			errstatus = executearg(tokens);
+			free_dptr(tokens);
+		}
+		counter++;
+		if (errstatus > 1)
+		{
+			badcom(errstatus, counter, cmd);
 		}
 		free(cmd);
 	}
