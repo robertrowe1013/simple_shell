@@ -36,7 +36,7 @@ int main(void)
 		else
 		{
 			errstatus = executearg(tokens);
-			free(tokens);
+			free_dptr(tokens);
 		}
 		counter++;
 		if (errstatus > 1)

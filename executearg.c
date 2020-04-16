@@ -20,7 +20,6 @@ int executearg(char **arg)
 	ac = access(path, X_OK);
 	if (ac != 0)
 		return (126);
-	printf("arg[0]: %s\n", arg[0]);
 	c_pid = fork();
 	if (c_pid == 0)
 	{

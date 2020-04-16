@@ -116,6 +116,6 @@ char *_finder(char **paths, char *cmd)
 	}
 	if (testpath == NULL)
 		return (cmd);
-/*	free(cmd);
-*/	return (testpath);
+	/*free(cmd); this is not freed!!!*/
+	return (testpath);
 }
