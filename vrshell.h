@@ -28,7 +28,7 @@ void free_dptr(char **ptr);
 int _putchar(char c);
 int checkbi(char **tokens);
 int runbi(char **tokens);
-char **pathfinder(char **arg);
+char *pathfinder(char **arg);
 void badcom(char *shell, int count, char *cmd);
 void print_number(int n);
 int stderr_pc(char c);
