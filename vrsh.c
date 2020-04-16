@@ -19,13 +19,13 @@ int main(void)
 		if (isatty(0))
 			write(STDOUT_FILENO, prompt, 2);
 		arg = read_line(errstatus);
-		if (arg[0] == '\0')
+		wc = count_words(arg, " ");
+		if (wc == 0)
 		{
 			free(arg);
 			counter++;
 			continue;
 		}
-		wc = count_words(arg, " ");
 		tokens = parse_str(arg, " ", wc);
 		cmd = _strdup(tokens[0]);
 		bi = checkbi(tokens);
