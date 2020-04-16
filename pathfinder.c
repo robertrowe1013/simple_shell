@@ -105,7 +105,6 @@ char *_finder(char **paths, char *cmd)
 		path_len = _strlen(paths[i]);
 		testpath = malloc(sizeof(char) * (path_len + 1));
 		_strncpy(testpath, paths[i], 0, path_len);
-		testpath = _strdup(paths[i]);
 		cmd_len = _strlen(cmd);
 		testpath = _realloc(testpath, path_len, (path_len + cmd_len + 2));
 		_strcat(testpath, "/");
