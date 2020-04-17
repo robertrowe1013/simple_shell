@@ -120,7 +120,7 @@ char *_finder(char **paths, char *cmd)
 		i++;
 	}
 	if (testpath == NULL)
-		return (cmd);
+		return (NULL);
 	/*free(cmd); this is not freed!!!*/
 	return (testpath);
 }
