@@ -27,7 +27,10 @@ int runbi(char **tokens)
 	if (_strncmp(tokens[0], "env", 3) == 0)
 	{
 		if (environ == NULL)
+		{
+			free_dptr(tokens);
 			return (1);
+		}
 		while (environ[i] != NULL)
 		{
 			while (environ[i][i2] != '\0')
@@ -39,6 +42,7 @@ int runbi(char **tokens)
 			i++;
 			i2 = 0;
 		}
+		free_dptr(tokens);
 	}
 	else if (_strncmp(tokens[0], "exit", 4) == 0)
 	{
