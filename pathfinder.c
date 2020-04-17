@@ -54,10 +54,24 @@ char *_getenv(const char *name)
 char *pathfinder(char **arg)
 {
 	char **path_array;
-	char *pathcmd;
+	char *pathcmd, *cwd, *tmp;
+	int len_cwd, len_arg, new_len;
 
 	if (arg[0][0] == '/')
 		return (arg[0]);
+	if (arg[0][0] == '.' && arg[0][1] == '/')
+	{
+		cwd = getcwd(NULL, 0);
+		len_cwd = _strlen(cwd);
+		len_arg = _strlen(arg[0]);
+		new_len = len_cwd + len_arg;
+		cwd = _realloc(cwd, len_cwd, new_len);
+		tmp = malloc(sizeof(char) * len_arg);
+		tmp = _strncpy(tmp, arg[0], 1, len_arg);
+		_strcat(cwd, tmp);
+		free(tmp);
+		return (cwd);
+	}
 	path_array = _paths();
 	if (path_array == NULL)
 		return (arg[0]);
