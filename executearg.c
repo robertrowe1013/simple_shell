@@ -37,5 +37,5 @@ int executearg(char **arg)
 	else
 		return (errno);
 
-	return (0);
+	return (status);
 }
