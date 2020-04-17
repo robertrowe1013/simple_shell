@@ -54,9 +54,9 @@ The shell works like this in interactive mode:
 
 ```bash
 $ ./vrsh
- ($) /bin/ls
+<^^^> /bin/ls
 vrsh main.c shell.c
- ($) exit
+<^^^> exit
 $
 ```
 
@@ -79,38 +79,53 @@ $
 ## Examples
 
 ```bash
-$ ls -l
-total 204
--rw-rw-r-- 1 vagrant vagrant    169 Apr 14 23:22 AUTHORS
--rw-rw-r-- 1 vagrant vagrant   3326 Apr 17 02:14 README.md
--rw-rw-r-- 1 vagrant vagrant   2083 Apr 16 23:00 badcom.c
--rw-rw-r-- 1 vagrant vagrant    854 Apr 17 02:04 builtins.c
--rw-rw-r-- 1 vagrant vagrant    887 Apr 17 02:06 curpath.c
--rw-rw-r-- 1 vagrant vagrant    618 Apr 17 01:10 executearg.c
--rw-rw-r-- 1 vagrant vagrant   2716 Apr  9 22:55 man_1_simple_shell
--rw-rw-r-- 1 vagrant vagrant   1014 Apr 10 23:41 memfuncs.c
--rw-rw-r-- 1 vagrant vagrant   1435 Apr 15 22:49 parse_str.c
--rw-rw-r-- 1 vagrant vagrant   2605 Apr 17 02:06 pathfinder.c
--rw-rw-r-- 1 vagrant vagrant    434 Apr 17 02:06 readline.c
--rw-rw-r-- 1 vagrant vagrant   1816 Apr 15 02:20 str_funcs.c
--rwxr-xr-x 1 vagrant vagrant 110080 Apr 16 15:34 test
--rwxrw-r-- 1 vagrant vagrant     16 Apr 11 13:12 test_ls_2
-drwxrwxr-x 3 vagrant vagrant   4096 Apr 11 12:42 this_works
--rwxrwxr-x 1 vagrant vagrant  28322 Apr 17 02:04 vrsh
--rw-rw-r-- 1 vagrant vagrant    793 Apr 17 02:06 vrsh.c
--rw-rw-r-- 1 vagrant vagrant   1054 Apr 17 02:06 vrshell.h
-drwxrwxr-x 4 vagrant vagrant   4096 Apr 17 01:42 working
 $ ./vrsh
- ($) pwd
+<^^^> ls -l
+total 108
+-rw-rw-r-- 1 vagrant vagrant   154 Aug 27 21:03 AUTHORS
+-rw-rw-r-- 1 vagrant vagrant  2534 Aug 27 21:03 README.md
+-rw-rw-r-- 1 vagrant vagrant  1176 Aug 27 21:03 built_ins.c
+-rw-rw-r-- 1 vagrant vagrant   545 Aug 27 21:03 execute.c
+---------- 1 vagrant vagrant     0 Aug 26 17:18 file
+-rw-rw-r-- 1 vagrant vagrant   505 Aug 27 21:03 get_built_in.c
+-rwxrwxr-x 1 vagrant vagrant 28081 Aug 27 20:46 hsh
+-rwxrwxr-x 1 vagrant vagrant 23810 Aug 26 19:10 ls
+-rw-rw-r-- 1 vagrant vagrant    89 Aug 27 17:20 oldpath.txt
+-rw-rw-r-- 1 vagrant vagrant  1220 Aug 27 21:03 search_path.c
+-rw-rw-r-- 1 vagrant vagrant  1268 Aug 27 21:03 shell.c
+-rw-rw-r-- 1 vagrant vagrant  1257 Aug 27 21:03 shell.h
+-rw-rw-r-- 1 vagrant vagrant  2921 Aug 27 13:43 string_helper.c
+-rw-rw-r-- 1 vagrant vagrant  1348 Aug 27 21:03 string_helper2.c
+-rw-rw-r-- 1 vagrant vagrant   827 Aug 25 15:27 string_helper3.c
+-rw-rw-r-- 1 vagrant vagrant    45 Aug 26 17:44 test_cats
+-rw-rw-r-- 1 vagrant vagrant    16 Aug 25 19:40 test_ls_2
+<^^^> setenv env_test 5
+<^^^> echo $env_test
+5
+<^^^> pwd
 /home/vagrant/simple_shell
- ($) cd ..
- ($) pwd
+<^^^> cd ..
+<^^^> pwd
 /home/vagrant
- ($) qwerty
-./vrsh: 7: qwerty: not found
- ($) echo $?
+<^^^> qwerty
+./hsh: 7: qwerty: not found
+<^^^> echo $?
 127
- ($) exit
+<^^^> echo $$
+30935
+<^^^> help # This is a comment
+These shell commands are defined internally.  Type `help' to see this list.
+Type `help name' to find out more about the function `name'.
+cd
+env
+exit
+help
+setenv
+unsetenv
+<^^^> ^C
+<^^^> ^C
+<^^^> ^C
+<^^^> exit
 $
 ```
 
