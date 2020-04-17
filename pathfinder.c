@@ -75,9 +75,14 @@ char **_paths(void)
 {
 	char *allpaths;
 	char **path_array;
-	int wc = 0;
+	int len, wc = 0;
 
 	allpaths = _getenv("PATH");
+	len = _strlen(allpaths);
+	if (allpaths[0] == ':')
+		allpaths = pstart(allpaths);
+	if (allpaths[len - 1] == ':')
+		allpaths = pend(allpaths);
 	wc = count_words(allpaths, ":");
 	if (wc == 0)
 		return (NULL);

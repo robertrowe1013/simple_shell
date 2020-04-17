@@ -39,7 +39,7 @@ int main(void)
 			free_dptr(tokens);
 		}
 		counter++;
-		if (errstatus > 1)
+		if (errstatus == 126 || errstatus == 127)
 		{
 			badcom(errstatus, counter, cmd);
 		}

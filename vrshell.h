@@ -32,5 +32,7 @@ char *pathfinder(char **arg);
 void badcom(int errorstatus, int count, char *cmd);
 void print_number(int n);
 int stderr_pc(char c);
+char *pstart(char *allpaths);
+char *pend(char *allpaths);
 
 #endif /* VRSHELL_H */
