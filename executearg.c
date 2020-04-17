@@ -12,7 +12,7 @@ int executearg(char **arg)
 	pid_t c_pid, pid;
 	int status, ac;
 	char *path;
-
+	/* this needs to be freed */
 	path = pathfinder(arg);
 	ac = access(path, F_OK);
 	if (ac != 0)
@@ -28,6 +28,7 @@ int executearg(char **arg)
 	}
 	else if (c_pid > 0)
 	{
+		free(path);
 		pid = waitpid(c_pid, &status, WUNTRACED);
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
@@ -36,6 +37,5 @@ int executearg(char **arg)
 	}
 	else
 		return (errno);
-
 	return (0);
 }
