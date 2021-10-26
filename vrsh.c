@@ -14,10 +14,12 @@ int main(void)
 
 	while (status)
 	{
+		/* check if running from terminal or interactive mode */
 		if (isatty(0))
 			write(STDOUT_FILENO, prompt, 2);
 		arg = read_line(errstatus);
 		wc = count_words(arg, " ");
+		/* blank line check */
 		if (wc == 0)
 		{
 			free(arg);
@@ -27,6 +29,7 @@ int main(void)
 		tokens = parse_str(arg, " ", wc);
 		cmd = _strdup(tokens[0]);
 		bi = checkbi(tokens);
+		/* check for built ins */
 		if (bi == 0)
 		{
 			status = runbi(tokens);
