@@ -1,5 +1,5 @@
 #  0x16. C - Simple Shell
-
+An assignment to create a simple shell after three months of learning C with the following requirements and restrictions on function calls: 
 ## Requirements
 
 * Allowed editors: vi, vim, emacs
