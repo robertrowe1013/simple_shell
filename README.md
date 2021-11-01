@@ -1,5 +1,6 @@
 #  0x16. C - Simple Shell
-An assignment to create a simple shell after three months of learning C with the following requirements and restrictions on function calls: 
+An assignment to create a simple shell using all the concepts learned in the first three months of Holberton with the following requirements and restrictions on function calls: 
+
 ## Requirements
 
 * Allowed editors: vi, vim, emacs
@@ -118,6 +119,8 @@ $
 
 ## Authors
 
-[Robert Rowe] (https://github.com/robertrowe1013)
+This project was pair programmed with daily check-ins to update progress and distribute tasks.
 
-[Viet Tran] (https://github.com/veeteeran)
+Robert Rowe [github](https://github.com/robertrowe1013) [LinkedIn](https://www.linkedin.com/in/robertrowe1013/)
+
+Viet Tran [github](https://github.com/veeteeran)
